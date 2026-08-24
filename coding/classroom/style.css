@@ -1,0 +1,14 @@
+div{
+    background-color: blue;
+    /* color: aliceblue; */
+}
+.heading{
+    color: brown;
+}
+button{
+    background-color: green;
+}
+p{
+    text-align: left;
+    text-decoration:underline;
+}
