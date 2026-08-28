@@ -90,6 +90,18 @@ void levelOrder(Node* root){
     }
 }
 
+//height of order
+
+int height(Node* root){
+    if(root == NULL){
+        return 0;
+    }
+    int leftHt = height(root->left);
+    int rightHt = height(root->right);
+    int currHt = max(leftHt, rightHt)+1;
+   return currHt;
+}
+
 int main(){
     vector<int> preorder = {1,2,-1,-1,3,4,-1,-1,5,-1,-1};
     Node* root = buildTree(preorder);
@@ -97,13 +109,15 @@ int main(){
     // cout << root->left->data << endl;
     // cout << root->right->data << endl;
     // cout << root->right->left->data << endl;
-    preorderTraversal(root);
-    cout<< endl;
-    inorderTraversal(root);
-    cout<< endl;
-    postOrder(root);
-    cout << endl;
+    // preorderTraversal(root);
+    // cout<< endl;
+    // inorderTraversal(root);
+    // cout<< endl;
+    // postOrder(root);
+    // cout << endl;
     levelOrder(root);
+    cout<< endl;
+   cout << "height : " << height(root) << endl;
     
     
     
