@@ -113,7 +113,7 @@ int count(Node* root){
 
     return (leftCount+rightCount)+1;
 }
-
+// sumOFnodes
 int sumOfNodes(Node* root){
     if(root == NULL){
         return 0;
@@ -124,9 +124,22 @@ int sumOfNodes(Node* root){
     return totalSum;
 }
 
+// kth level of a tree
+void KthLevel(Node* root, int K){
+    if(root == NULL){
+        return;
+    }
+    if(K == 1){
+        cout << root->data << " ";
+        return;
+    }
+    KthLevel(root->left, K-1);
+    KthLevel(root->right, K-1);
+}
+
 
 int main(){
-    vector<int> preorder = {1,2,-1,-1,3,4,-1,-1,5,-1,-1};
+    vector<int> preorder = {1,2,7,-1,-1,-1,3,4,-1,-1,5,-1,-1};
     Node* root = buildTree(preorder);
     // cout << root->data << endl;
     // cout << root->left->data << endl;
@@ -138,11 +151,12 @@ int main(){
     // cout<< endl;
     // postOrder(root);
     // cout << endl;
-    levelOrder(root);
-    cout<< endl;
-    cout << "height : " << height(root) << endl;
-    cout << "count : " << count(root) << endl;
-    cout << " Sum : " << sumOfNodes(root) << endl;
+    // levelOrder(root);
+    // cout<< endl;
+    // cout << "height : " << height(root) << endl;
+    // cout << "count : " << count(root) << endl;
+    // cout << " Sum : " << sumOfNodes(root) << endl;
+    KthLevel(root, 3);
     
     
     return 0;
