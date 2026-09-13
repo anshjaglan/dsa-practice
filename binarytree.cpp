@@ -137,10 +137,28 @@ void KthLevel(Node* root, int K){
     KthLevel(root->right, K-1);
 }
 
+//transform to sum tree
+int sumTree(Node* root){
+    if(root == NULL) return 0;
+
+    int leftSum = sumTree(root->left);
+    int rightSum = sumTree(root->right);
+
+    root->data += leftSum + rightSum;
+    return root->data;
+}
+void printPreorder(Node* root) {
+    if (root == NULL) return;
+    
+    cout << root->data << " ";
+    printPreorder(root->left);
+    printPreorder(root->right);
+}
+
 
 int main(){
     vector<int> preorder = {1,2,7,-1,-1,-1,3,4,-1,-1,5,-1,-1};
-    Node* root = buildTree(preorder);
+    //Node* root = buildTree(preorder);
     // cout << root->data << endl;
     // cout << root->left->data << endl;
     // cout << root->right->data << endl;
@@ -156,7 +174,24 @@ int main(){
     // cout << "height : " << height(root) << endl;
     // cout << "count : " << count(root) << endl;
     // cout << " Sum : " << sumOfNodes(root) << endl;
-    KthLevel(root, 3);
+    // KthLevel(root, 3);
+
+    Node* root = new Node(1);
+    root->left = new Node(2);
+    root->right = new Node(3);
+    root->right->left = new Node(4);
+    root->right->right = new Node(5);
+    
+    cout << "Preorder before sumTree: ";
+    printPreorder(root);
+    cout << endl;
+
+    // Call the sumTree function
+    sumTree(root);
+
+    cout << "Preorder after sumTree:  ";
+   printPreorder(root);
+    cout << endl;
     
     
     return 0;
